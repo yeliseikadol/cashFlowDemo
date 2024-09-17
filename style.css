@@ -339,6 +339,16 @@ select, input {
     cursor: pointer;
     box-sizing: border-box;
 }
+
+input:focus:hover {
+    cursor: text;
+}
+
+input:disabled:hover {
+    cursor: not-allowed;
+    border: 1px solid var(--text-field-stroke);
+}
+
 input:hover, select:hover {
     border: 1px solid #000000bf;
 }
