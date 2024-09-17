@@ -163,4 +163,138 @@ function clearData() {
 
     // lifeExpectancy
     document.getElementById('lifeExpectancy').value = '2070-10-01';
-    document.getElementById
+    document.getElementById('output3').innerText = 'Input 3: 2070-10-01';
+
+    document.getElementById('preRetirementIncomeGross').value = 120000;
+    document.getElementById('output4').innerText = 'preRetirementIncomeGross: 120000';
+
+    document.getElementById('input5').value = '';
+    document.getElementById('output5').innerText = 'Input 5: ';
+
+    document.getElementById('input6').value = '';
+    document.getElementById('output6').innerText = 'Input 6: ';
+
+    // Clear dropdowns
+    document.getElementById('preRetirementIncomeTax').value = 0.4;
+    document.getElementById('output7').innerText = 'preRetirementIncomeTax 1: 40%';
+
+    document.getElementById('dropdown2').value = 'Option A';
+    document.getElementById('output8').innerText = 'Dropdown 2: ';
+
+    document.getElementById('dropdown3').value = 'Option X';
+    document.getElementById('output9').innerText = 'Dropdown 3: ';
+
+    document.getElementById('dropdown4').value = 'Choice 1';
+    document.getElementById('output10').innerText = 'Dropdown 4: ';
+}
+
+// Event listeners for buttons
+document.getElementById('saveBtn').addEventListener('click', saveData);
+document.getElementById('clearBtn').addEventListener('click', clearData);
+
+// Load data when page loads
+window.onload = loadData;
+
+
+
+
+
+// Function to calculate data for each year and update chart
+function calculateAndUpdateChart() {
+    // Get values from inputs
+    const preRetirementExpenses = parseFloat(document.getElementById('preRetirementExpenses').value);
+    const preRetirementIncomeNet = parseFloat(document.getElementById('preRetirementIncomeNet').value);
+    const projectionStart = new Date(document.getElementById('projectionStart').value);
+    const retirementStart = new Date(document.getElementById('retirementStart').value);
+
+    const retirementExpenses = parseFloat(document.getElementById('retirementExpenses').value);
+    const retirementIncomeNet = parseFloat(document.getElementById('retirementIncomeNet').value);
+    const lifeExpectancy = new Date(document.getElementById('lifeExpectancy').value);
+
+    // Calculate years
+    const years = [];
+    const expenses = [];
+    const income = [];
+    
+    const startYear = projectionStart.getFullYear();
+    const preEndYear = retirementStart.getFullYear();
+    const postStartYear = retirementStart.getFullYear();
+    const postEndYear = lifeExpectancy.getFullYear();
+
+    // Fill years and expenses for pre-retirement period
+    for (let year = startYear; year <= preEndYear; year++) {
+        years.push(year);
+        expenses.push(preRetirementExpenses);
+        income.push(preRetirementIncomeNet);
+    }
+
+    // Fill years and expenses for post-retirement period
+    for (let year = postStartYear; year <= postEndYear; year++) {
+        years.push(year);
+        expenses.push(retirementExpenses);
+        income.push(retirementIncomeNet);
+    }
+
+    // Update chart with new data
+    chart.xAxis[0].setCategories(years);
+    chart.series[0].setData(expenses);
+    chart.series[1].setData(income);
+}
+
+// Create Highcharts chart
+const chart = Highcharts.chart('container2', {
+
+    chart: {
+        type: 'areaspline',
+        height: 500,
+    },
+    title: {
+        text: '',
+        align: 'left'
+    },
+    xAxis: {
+        categories: [], // Years will be dynamically added
+        crosshair: true,
+        accessibility: {
+            description: 'Y'
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: ''
+        }
+    },
+    tooltip: {
+        shared: true,
+        headerFormat: '<b>Cash Flow for {point.x}</b><br>'
+
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        },
+        areaspline: {
+            fillOpacity: 0.5
+        }
+    },
+    series: [
+        {
+            name: 'Expenses',
+            data: [] // Data will be dynamically added
+        },
+        {
+            name: 'Income',
+            data: [] // Data will be dynamically added
+        }
+    ]
+});
+
+// Run the calculateAndUpdateChart function on page load
+document.addEventListener('DOMContentLoaded', function() {
+    calculateAndUpdateChart();
+});
+
+// Event listener for the "update" button
+document.getElementById('updateChart').addEventListener('click', calculateAndUpdateChart);
