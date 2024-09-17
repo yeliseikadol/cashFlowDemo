@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with Input Fields and Dropdowns</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="row row-justify">
+        <div>
+            <img src="headerLogo.svg" height="16" />
+        </div>
+
+        <div class="row">
+            <button  class="secondary" id="saveBtn">Save Data</button>
+            <button  class="secondary" id="clearBtn">Clear Data</button>
+        </div>
+    </header>
+    <div class="content">
+        <div class="left">
+           
+            <!-- Timeline -->
+            <div class="card-box column gap-1">
+                <h1>John Williams</h1>
+                <div class="row-3">
+                    <div class="input-field"><label for="projectionStart">Projection Start</label><input type="date" id="projectionStart" value="2024-10-20">
+                    </div>
+                    <div class="input-field"><label for="retirementStart">Retirement Date</label><input type="date" id="retirementStart">
+                    </div>
+                    <div class="input-field"><label for="lifeExpectancy">Life expectancy</label><input type="date" id="lifeExpectancy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pre-retirement Income & Expenses -->
+            <div class="card-box column gap-1">
+                <h2>Pre-Retirement Income&Expenses</h2>
+                <div class="row row-justify">
+                    <h3>Income</h3>
+                    <div id="preRetirementIncomePeriodOutput"></div>
+                </div>
+                <div class="row-3">
+                    <div class="input-field">
+                        <label for="preRetirementIncomeGross">Gross</label>
+                        <input type="number" id="preRetirementIncomeGross" value="120000">
+                    </div>
+                    <div class="dropdown"><label for="preRetirementIncomeTax">Tax</label>
+                        <select id="preRetirementIncomeTax">
+                            <option value=0.4>40%</option>
+                            <option value=0.2>20%</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <label for="preRetirementIncomeNet">Net</label>
+                        <input disabled type="number" id="preRetirementIncomeNet" value="72000">
+                    </div>
+                </div>
+
+                <div class="row row-justify">
+                    <h3>Expenses</h3>
+                    <div id="preRetirementExpensesPeriodOutput"></div>
+                </div>
+
+                <div class="row-3">
+                    <div class="input-field">
+                        <label for="preRetirementExpenses">Gross</label>
+                        <input type="number" id="preRetirementExpenses" value="65000">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-box column gap-1">
+                <h2>Retirement Income&Expenses</h2>
+                <div class="row row-justify">
+                    <h3>Income</h3>
+                    <div id="retirementIncomePeriodOutput"></div>
+                </div>
+                <div class="row-3">
+                    <div class="input-field">
+                        <label for="retirementIncomeGross">Gross</label>
+                        <input type="number" id="retirementIncomeGross" value="20000">
+                    </div>
+                    <div class="dropdown"><label for="retirementIncomeTax">Tax</label>
+                        <select id="retirementIncomeTax">
+                            <option value=0.2>20%</option>
+                            <option value=0.4>40%</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <label for="retirementIncomeNet">Net</label>
+                        <input disabled type="number" id="retirementIncomeNet" value="16000">
+                    </div>
+                </div>
+
+                <div class="row row-justify">
+                    <h3>Expenses</h3>
+                    <div id="retirementExpensesPeriodOutput"></div>
+                </div>
+
+                <div class="row-3">
+                    <div class="input-field">
+                        <label for="retirementExpenses">Gross</label>
+                        <input type="number" id="retirementExpenses" value="25000">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="goal-box">
+                <div class="card-box column gap-1">
+                    <h2>Pension Goal</h2>
+                    <div class="row-3">
+                        <div class="dropdown"><label for="pensionGoalRisk">Risk level</label>
+                            <select id="pensionGoalRisk">
+                                <option value=1>1</option>
+                                <option value=1.5 selected>2</option>
+                                <option value=2>3</option>
+                                <option value=2.5>4</option>
+                                <option value=3>5</option>
+                            </select>
+                            <div class="helper">Expected growth: 1.5%</div>
+                        </div>
+                    </div>
+                    <div class="row-3">
+                        <div class="input-field">
+                            <label for="pensionTargetSum">Target Lump Sum</label>
+                            <input type="number" id="pensionTargetSum" value="100000">
+                        </div>
+                        <div class="input-field">
+                            <label for="pensionTargetSumDate">On Date</label>
+                            <input type="date" id="pensionTargetSumDate" value="2045-10-01">
+                        </div>
+                    </div>
+                    <div class="row-3">
+                        <div class="input-field">
+                            <label for="pensionMonthlyWithdrawalSum">Regular withdrawals</label>
+                            <input type="number" id="pensionMonthlyWithdrawalSum" value="2000">
+                        </div>
+                        <div class="input-field">
+                            <label for="pensionMonthlyWithdrawalPeriodStart">From</label>
+                            <input type="date" id="pensionMonthlyWithdrawalPeriodStart" value="2045-10-01">
+                        </div>
+                        <div class="input-field">
+                            <label for="pensionMonthlyWithdrawalPeriodEnd">To</label>
+                            <input type="date" id="pensionMonthlyWithdrawalPeriodEnd" value="2070-10-01">
+                        </div>
+                    </div>
+                    <div class="account-box">
+                        <h3>SIPP Account</h3>
+                        <div class="row-3">
+                            <div class="input-field">
+                                <label for="sippRegular">Monthly Deposit</label>
+                                <input type="number" id="sippRegular">
+                            </div>
+                            <div class="input-field">
+                                <label for="sippOneOff">One-Off Payment</label>
+                                <input type="number" id="sippOneOff">
+                            </div>
+                            <div class="input-field">
+                                <label for="sippTransfer">Transfer + Valuation</label>
+                                <input type="number" id="sippTransfer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+
+            <div class="goal-box">
+                <div class="card-box column gap-1">
+                    <h2>Investment Goal</h2>
+                    <div class="row-3">
+                        <div class="dropdown">
+                            <label for="investmentGoalRisk">Risk level</label>
+                            <select id="investmentGoalRisk">
+                                <option value=1.5>1</option>
+                                <option value=2>2</option>
+                                <option value=2.5>3</option>
+                                <option value=3>4</option>
+                                <option value=3.5>5</option>
+                            </select>
+                            <div class="helper">Expected growth: 2%</div>
+                        </div>
+                    </div>
+                    <div class="row-3">
+                        <div class="input-field">
+                            <label for="investmentTargetSum">Target Lump Sum</label>
+                            <input type="number" id="investmentTargetSum">
+                        </div>
+                        <div class="input-field">
+                            <label for="investmentTargetSumDate">On Date</label>
+                            <input type="date" id="investmentTargetSumDate">
+                        </div>
+                    </div>
+                    <div class="account-box">
+                        <h3>ISA Account</h3>
+                        <!-- <button class="secondary">+ One-Off payment</button> -->
+                        <div class="row-3">
+                            <div class="input-field">
+                                <label for="isaRegular">Monthly Deposit</label>
+                                <input type="number" id="isaRegular">
+                            </div>
+                            <div class="input-field">
+                                <label for="isaOneOff">One-Off Payment</label>
+                                <input type="number" id="isaOneOff">
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="account-box">
+                        <h3>GIA Account</h3>
+                        <!-- <button class="secondary">+ One-Off payment</button> -->
+                        <div class="row-3">
+                            <div class="input-field">
+                                <label for="giaRegular">Monthly Deposit</label>
+                                <input type="number" id="giaRegular">
+                            </div>
+                            <div class="input-field">
+                                <label for="giaOneOff">One-Off Payment</label>
+                                <input type="number" id="giaOneOff">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+
+            
+        </div>
+        
+        <div class="right">
+            <div class="right-content">
+                <div class="row row-justify">
+                    <h1>Cash Flow Chart</h1>
+                    <button id="updateChart">Update Chart</button>
+                </div>
+                
+                <div id="container2" class="chart-box" style="width:100%; height:600;"></div>
+            </div>
+        </div>
+
+
+
+    </div>
+    
+    <script>
+        function calculateIncomePreRetirement() {
+            const salary = parseFloat(document.getElementById('preRetirementIncomeGross').value);
+            const deduction = parseFloat(document.getElementById('preRetirementIncomeTax').value);
+            const result = salary - (salary * deduction);
+            document.getElementById('preRetirementIncomeNet').value = `${result.toFixed(0)}`;
+        }
+
+        function calculateIncomeRetirement() {
+            const salary = parseFloat(document.getElementById('retirementIncomeGross').value);
+            const deduction = parseFloat(document.getElementById('retirementIncomeTax').value);
+            const result = salary - (salary * deduction);
+            document.getElementById('retirementIncomeNet').value = `${result.toFixed(0)}`;
+        }
+
+        // Add event listeners to update the result automatically
+        document.getElementById('preRetirementIncomeGross').addEventListener('input', calculateIncomePreRetirement);
+        document.getElementById('preRetirementIncomeTax').addEventListener('change', calculateIncomePreRetirement);
+        document.getElementById('retirementIncomeGross').addEventListener('input', calculateIncomeRetirement);
+        document.getElementById('retirementIncomeTax').addEventListener('change', calculateIncomeRetirement);
+
+        // Initial calculation on page load
+        document.addEventListener('DOMContentLoaded', calculateIncomePreRetirement);
+        document.addEventListener('DOMContentLoaded', calculateIncomeRetirement);
+    </script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
