@@ -69,6 +69,9 @@ function loadData() {
     document.getElementById('investmentGoalRiskOutput').innerText = document.getElementById('investmentGoalRisk').value || 4;
     document.getElementById('investmentTargetSum').value = localStorage.getItem('investmentTargetSum') || 50000;
     document.getElementById('investmentTargetSumDate').value = localStorage.getItem('investmentTargetSumDate') || document.getElementById('retirementStart').value;
+    document.getElementById('investmentMonthlyWithdrawalSum').value = localStorage.getItem('investmentMonthlyWithdrawalSum') || 0;
+    document.getElementById('investmentMonthlyWithdrawalPeriodStart').value = localStorage.getItem('investmentMonthlyWithdrawalPeriodStart') || document.getElementById('retirementStart').value;
+    document.getElementById('investmentMonthlyWithdrawalPeriodEnd').value = localStorage.getItem('investmentMonthlyWithdrawalPeriodEnd') || document.getElementById('lifeExpectancy').value;
     document.getElementById('isaRegular').value = localStorage.getItem('isaRegular') || 500;
     document.getElementById('isaOneOff').value = localStorage.getItem('isaOneOff') || 0;
     document.getElementById('giaRegular').value = localStorage.getItem('giaRegular') || 200;
@@ -107,6 +110,9 @@ function saveData() {
     localStorage.setItem('investmentGoalRisk', document.getElementById('investmentGoalRisk').value);
     localStorage.setItem('investmentTargetSum', document.getElementById('investmentTargetSum').value);
     localStorage.setItem('investmentTargetSumDate', document.getElementById('investmentTargetSumDate').value);
+    localStorage.setItem('investmentMonthlyWithdrawalSum', document.getElementById('investmentMonthlyWithdrawalSum').value);
+    localStorage.setItem('investmentMonthlyWithdrawalPeriodStart', document.getElementById('investmentMonthlyWithdrawalPeriodStart').value);
+    localStorage.setItem('investmentMonthlyWithdrawalPeriodEnd', document.getElementById('investmentMonthlyWithdrawalPeriodEnd').value);
     localStorage.setItem('isaRegular', document.getElementById('isaRegular').value);
     localStorage.setItem('isaOneOff', document.getElementById('isaOneOff').value);
     localStorage.setItem('giaRegular', document.getElementById('giaRegular').value);
@@ -362,7 +368,14 @@ document.getElementById('pensionGoalRisk').addEventListener('change', calculateA
 document.getElementById('pensionTargetSum').addEventListener('input', calculateAndUpdateChart);
 document.getElementById('pensionMonthlyWithdrawalSum').addEventListener('input', calculateAndUpdateChart);
 document.getElementById('sippOneOff').addEventListener('input', calculateAndUpdateChart);
-document.getElementById('sippRegular').addEventListener('input', calculateAndUpdateChart);
+document.getElementById('sippRegular').addEventListener('input', function() {
+    var sippRegular = this.value;
+    var grossOutput = document.getElementById('monthlyDepositGross');
+    var gross = sippRegular * 1.2;
+    grossOutput.innerText = `${gross}`;
+    calculateAndUpdateChart();
+});
+
 document.getElementById('sippTransfer').addEventListener('input', calculateAndUpdateChart);
 
 document.getElementById('investmentGoalRisk').addEventListener('change', calculateAndUpdateChart);
@@ -376,11 +389,11 @@ document.getElementById('pensionTargetSumDate').addEventListener('input', calcul
 document.getElementById('investmentTargetSumDate').addEventListener('input', calculateAndUpdateChart);
 
 document.getElementById('pensionGoalRisk').addEventListener('change', function() {
-    document.getElementById('pensionGoalRiskOutput').innerText = document.getElementById('pensionGoalRisk').value + '%'
+    document.getElementById('pensionGoalRiskOutput').value = document.getElementById('pensionGoalRisk').value
 })
 
 document.getElementById('investmentGoalRisk').addEventListener('change', function() {
-    document.getElementById('investmentGoalRiskOutput').innerText = document.getElementById('investmentGoalRisk').value + '%'
+    document.getElementById('investmentGoalRiskOutput').value = document.getElementById('investmentGoalRisk').value
 })
 
 // Initial calculation on page load
@@ -434,4 +447,42 @@ document.getElementById('hideInvestmentGoal').addEventListener('click', function
     } else {
         icon.textContent = 'keyboard_arrow_up';
     }
+});
+
+
+
+//timeline
+document.getElementById('projectionStart').addEventListener('input', function() {
+    var projectionStart = document.getElementById('projectionStart').value;
+    var retirementStart = document.getElementById('retirementStart').value;
+    document.getElementById('preRetirementIncomePeriodOutput').innerText = `${projectionStart} - ${retirementStart}`;
+    document.getElementById('preRetirementExpensesPeriodOutput').innerText = `${projectionStart} - ${retirementStart}`;
+    calculateAndUpdateChart();
+});
+
+document.getElementById('retirementStart').addEventListener('input', function() {
+    var projectionStart = document.getElementById('projectionStart').value;
+    var retirementStart = document.getElementById('retirementStart').value;
+    var lifeExpectancy = document.getElementById('lifeExpectancy').value;
+
+    document.getElementById('pensionMonthlyWithdrawalPeriodStart').value = `${retirementStart}`;
+    document.getElementById('pensionTargetSumDate').value = `${retirementStart}`;
+    document.getElementById('investmentMonthlyWithdrawalPeriodStart').value = `${retirementStart}`;
+    document.getElementById('investmentTargetSumDate').value = `${retirementStart}`;
+    document.getElementById('preRetirementIncomePeriodOutput').innerText = `${projectionStart} - ${retirementStart}`;
+    document.getElementById('preRetirementExpensesPeriodOutput').innerText = `${projectionStart} - ${retirementStart}`;
+    document.getElementById('retirementIncomePeriodOutput').innerText = `${retirementStart} - ${lifeExpectancy}`;
+    document.getElementById('retirementExpensesPeriodOutput').innerText = `${retirementStart} - ${lifeExpectancy}`;
+    calculateAndUpdateChart();
+});
+
+document.getElementById('lifeExpectancy').addEventListener('input', function() {
+    var retirementStart = document.getElementById('retirementStart').value;
+    var lifeExpectancy = document.getElementById('lifeExpectancy').value;
+
+    document.getElementById('pensionMonthlyWithdrawalPeriodEnd').value = `${lifeExpectancy}`;
+    document.getElementById('investmentMonthlyWithdrawalPeriodEnd').value = `${lifeExpectancy}`;
+    document.getElementById('retirementIncomePeriodOutput').innerText = `${retirementStart} - ${lifeExpectancy}`;
+    document.getElementById('retirementExpensesPeriodOutput').innerText = `${retirementStart} - ${lifeExpectancy}`;
+    calculateAndUpdateChart();
 });

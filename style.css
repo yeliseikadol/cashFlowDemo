@@ -14,6 +14,7 @@
     --button-secondary-text: #161616;
     --border-radius-card: 1rem;
     --text-helper: #8a8a8a;
+    --button-bordered: #00000010;
 }
 
 
@@ -363,4 +364,15 @@ button.iconButton {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+button.bordered {
+    background-color: var(--button-bordered);
+    border-radius: 100%;
+}
+
+.not-button {
+    font-weight: 600;
+    font-family: "Figtree";
+    color: var(--label-secondary);
 }
