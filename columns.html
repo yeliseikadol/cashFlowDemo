@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form with Input Fields and Dropdowns</title>
+    <title>[Demo] Cash Flow</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400" rel="stylesheet" />
@@ -44,8 +44,8 @@
             <!-- Pre-retirement Income & Expenses -->
             <div class="card-box column gap-1">
                 <div class="header row row-justify">
-                    <h2>Pre-Retirement Income&Expenses</h2>
-                    <button id="hideIncomesContent" class="secondary iconButton">
+                    <h2>Pre-Retirement</h2>
+                    <button id="hideIncomesContent" class="secondary iconButton bordered">
                         <span class="material-symbols-outlined">keyboard_arrow_up</span>
                     </button>
                 </div>
@@ -54,12 +54,12 @@
                     <div class="section">
                         <div class="row row-justify">
                             <h3>Income</h3>
-                            <div id="preRetirementIncomePeriodOutput"></div>
+                            <div class="not-button" id="preRetirementIncomePeriodOutput"></div>
                         </div>
 
                         <div class="row-3">
                             <div class="input-field">
-                                <label for="preRetirementIncomeGross">Gross</label>
+                                <label for="preRetirementIncomeGross">Gross, Annual</label>
                                 <input type="number" id="preRetirementIncomeGross" value="120000">
                             </div>
                             <div class="dropdown"><label for="preRetirementIncomeTax">Tax</label>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="input-field">
                                 <label for="preRetirementIncomeNet">Net</label>
-                                <input disabled type="number" id="preRetirementIncomeNet" value="72000">
+                                <input class="disabled" disabled type="number" id="preRetirementIncomeNet" value="72000">
                             </div>
                         </div>
                     </div>
@@ -78,12 +78,12 @@
                     <div class="section">
                         <div class="row row-justify">
                             <h3>Expenses</h3>
-                            <div id="preRetirementExpensesPeriodOutput"></div>
+                            <div class="not-button" id="preRetirementExpensesPeriodOutput"></div>
                         </div>
         
                         <div class="row-3">
                             <div class="input-field">
-                                <label for="preRetirementExpenses">Gross</label>
+                                <label for="preRetirementExpenses">Gross, Annual</label>
                                 <input type="number" id="preRetirementExpenses" value="65000">
                             </div>
                         </div>
@@ -94,8 +94,8 @@
             <div class="card-box column gap-1">
 
                 <div class="header row row-justify">
-                    <h2>Retirement Income&Expenses</h2>
-                    <button id="hideRetirementContent" class="secondary iconButton">
+                    <h2>Post-Retirement</h2>
+                    <button id="hideRetirementContent" class="secondary iconButton bordered">
                         <span class="material-symbols-outlined">keyboard_arrow_up</span>
                     </button>
                 </div>
@@ -106,12 +106,12 @@
 
                         <div class="row row-justify">
                             <h3>Income</h3>
-                            <div id="retirementIncomePeriodOutput"></div>
+                            <div class="not-button" id="retirementIncomePeriodOutput"></div>
                         </div>
 
                         <div class="row-3">
                             <div class="input-field">
-                                <label for="retirementIncomeGross">Gross</label>
+                                <label for="retirementIncomeGross">Gross, Annual</label>
                                 <input type="number" id="retirementIncomeGross" value="20000">
                             </div>
                             <div class="dropdown"><label for="retirementIncomeTax">Tax</label>
@@ -122,27 +122,27 @@
                             </div>
                             <div class="input-field">
                                 <label for="retirementIncomeNet">Net</label>
-                                <input disabled type="number" id="retirementIncomeNet" value="16000">
+                                <input class="disabled" disabled type="number" id="retirementIncomeNet" value="16000">
                             </div>
                         </div>
 
                     </div>
-                    </div>
+                    
                     
                     <div class="section">
                         
                         <div class="row row-justify">
                             <h3>Expenses</h3>
-                            <div id="retirementExpensesPeriodOutput"></div>
+                            <div class="not-button" id="retirementExpensesPeriodOutput"></div>
                         </div>
 
                         <div class="row-3">
                             <div class="input-field">
-                                <label for="retirementExpenses">Gross</label>
+                                <label for="retirementExpenses">Gross, Annual</label>
                                 <input type="number" id="retirementExpenses" value="25000">
                             </div>
                         </div>
-
+                    </div>
                 </div>
             </div>
 
@@ -157,7 +157,7 @@
                 <div class="card-box column gap-1">
                     <div class="header row row-justify">
                         <h2>Pension Goal</h2>
-                        <button id="hidePensionGoal" class="secondary iconButton">
+                        <button id="hidePensionGoal" class="secondary iconButton bordered">
                             <span class="material-symbols-outlined">keyboard_arrow_up</span>
                         </button>
                     </div>
@@ -172,7 +172,10 @@
                                         <option value=2.5>4</option>
                                         <option value=3>5</option>
                                     </select>
-                                    <div class="helper">Expected growth: <span id="pensionGoalRiskOutput">1.5%</span></div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="pensionGoalRiskOutput">Expected Growth, %</label>
+                                    <input class="disabled" type="number" id="pensionGoalRiskOutput" value="1.5">
                                 </div>
                             </div>
                             <div class="row-3">
@@ -223,12 +226,11 @@
 
                 
             </div>
-
             <div class="goal-box">
                 <div class="card-box column gap-1">
                     <div class="header row row-justify">
                         <h2>Investment Goal</h2>
-                        <button id="hideInvestmentGoal" class="secondary iconButton">
+                        <button id="hideInvestmentGoal" class="secondary iconButton bordered">
                             <span class="material-symbols-outlined">keyboard_arrow_up</span>
                         </button>
                     </div>
@@ -243,7 +245,10 @@
                                     <option value=4 selected>4</option>
                                     <option value=5>5</option>
                                 </select>
-                                <div class="helper">Expected growth: <span id="investmentGoalRiskOutput">2%</span></div>
+                            </div>
+                            <div class="input-field">
+                                <label for="investmentGoalRiskOutput">Expected Growth, %</label>
+                                <input class="disabled" disabled type="number" id="investmentGoalRiskOutput" value="4">
                             </div>
                         </div>
                         <div class="row-3">
@@ -256,9 +261,22 @@
                                 <input type="date" id="investmentTargetSumDate" value="2035-10-01">
                             </div>
                         </div>
+                        <div class="row-3">
+                            <div class="input-field">
+                                <label for="investmentMonthlyWithdrawalSum">Monthly withdrawals</label>
+                                <input type="number" id="investmentMonthlyWithdrawalSum" value="2000">
+                            </div>
+                            <div class="input-field">
+                                <label for="investmentMonthlyWithdrawalPeriodStart">From</label>
+                                <input type="date" id="investmentMonthlyWithdrawalPeriodStart" value="2045-10-01">
+                            </div>
+                            <div class="input-field">
+                                <label for="investmentMonthlyWithdrawalPeriodEnd">To</label>
+                                <input type="date" id="investmentMonthlyWithdrawalPeriodEnd" value="2070-10-01">
+                            </div>
+                        </div>
                         <div class="account-box">
                             <h3>ISA Account</h3>
-                            <!-- <button class="secondary">+ One-Off payment</button> -->
                             <div class="row-3">
                                 <div class="input-field">
                                     <label for="isaRegular">Monthly Deposit</label>
@@ -270,10 +288,8 @@
                                 </div>
                             </div>
                         </div>
-        
                         <div class="account-box">
                             <h3>GIA Account</h3>
-                            <!-- <button class="secondary">+ One-Off payment</button> -->
                             <div class="row-3">
                                 <div class="input-field">
                                     <label for="giaRegular">Monthly Deposit</label>
@@ -286,10 +302,7 @@
                             </div>
                         </div>
                     </div>
-                    
                 </div>
-
-                
             </div>
         </div>
         
@@ -307,6 +320,7 @@
 
 
     </div>
+
     <script src="script.js"></script>
 </body>
 

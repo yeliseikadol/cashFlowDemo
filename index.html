@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- 
-Expected growth отдельно
--->
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form with Input Fields and Dropdowns</title>
+    <title>[Demo] Cash Flow - 2 columns layout</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400" rel="stylesheet" />
@@ -75,7 +70,7 @@ Expected growth отдельно
                             </div>
                             <div class="input-field">
                                 <label for="preRetirementIncomeNet">Net</label>
-                                <input disabled type="number" id="preRetirementIncomeNet" value="72000">
+                                <input class="disabled" disabled type="number" id="preRetirementIncomeNet" value="72000">
                             </div>
                         </div>
                     </div>
@@ -127,7 +122,7 @@ Expected growth отдельно
                             </div>
                             <div class="input-field">
                                 <label for="retirementIncomeNet">Net</label>
-                                <input disabled type="number" id="retirementIncomeNet" value="16000">
+                                <input class="disabled" disabled type="number" id="retirementIncomeNet" value="16000">
                             </div>
                         </div>
 
@@ -174,7 +169,7 @@ Expected growth отдельно
                                 </div>
                                 <div class="input-field">
                                     <label for="pensionGoalRiskOutput">Expected Growth, %</label>
-                                    <input disabled type="number" id="pensionGoalRiskOutput" value="1.5">
+                                    <input class="disabled" disabled type="number" id="pensionGoalRiskOutput" value="1.5">
                                 </div>
                             </div>
                             <div class="row-3">
@@ -246,11 +241,10 @@ Expected growth отдельно
                                     <option value=4 selected>4</option>
                                     <option value=5>5</option>
                                 </select>
-                                <!-- <div class="helper">Expected growth: <span id="investmentGoalRiskOutput">2%</span></div> -->
                             </div>
                             <div class="input-field">
                                 <label for="investmentGoalRiskOutput">Expected Growth, %</label>
-                                <input disabled type="number" id="investmentGoalRiskOutput" value="4">
+                                <input class="disabled" disabled type="number" id="investmentGoalRiskOutput" value="4">
                             </div>
                         </div>
                         <div class="row-3">

@@ -26,6 +26,7 @@ html {
 
 
 body {
+    margin: 0;
     background-color: var(--background);
     padding: 32px;
 }
@@ -343,6 +344,10 @@ select, input {
 
 input:focus:hover {
     cursor: text;
+}
+
+input:disabled {
+    color: var(--text-helper);
 }
 
 input:disabled:hover {
